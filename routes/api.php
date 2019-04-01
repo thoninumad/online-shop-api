@@ -32,6 +32,9 @@ Route::prefix('v1')->group(function() {
         Route::post('payment', 'ShopController@payment');
         Route::post('update-profile', 'UserController@updateProfile');
         Route::post('update-password', 'UserController@updatePassword');
+        Route::post('confirmation', 'ShopController@confirmation');
         Route::get('my-order', 'ShopController@myOrder');
+        Route::get('confirmation/invoice/{invoice}', 'ShopController@invoice');
+        Route::get('invoice',  'ShopController@createInvoice');
     });
 });

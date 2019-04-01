@@ -12,12 +12,12 @@
 
         <hr class="my-3">
 
-        <strong>Buyer</strong>           : {{$order->user->name}} <br>
+        <strong>Pembeli</strong>           : {{$order->user->name}} <br>
         <strong>Order ID</strong>        : {{$order->id}} <br>
         <strong>Invoice Number</strong>  : {{$order->invoice_number}} <br>
-        <strong>Total Bill</strong>      : Rp. {{number_format($order->total_bill, 2, ",", ".")}} <br>
-        <strong>Courier Service</strong> : {{$order->courier_service}} <br>
-        <strong>Order Status</strong>    : {{$order->status}} <br>
+        <strong>Tagihan Total</strong>      : Rp. {{number_format($order->total_bill, 2, ",", ".")}} <br>
+        <strong>Layanan Kurir</strong> : {{$order->courier_service}} <br>
+        <strong>Status Order</strong>    : {{$order->status}} <br>
 
         <hr class="my-3">
 
@@ -31,9 +31,8 @@
 
         <hr class="my-3">
 
-        Silahkan lakukan pembayaran ke rekening berikut. <br>
-        <strong>BCA</strong> : a/n Fathoni Nur Muhammad (140897600000) <br>
-        <strong>Mandiri</strong> : a/n Fathoni Nur Muhammad (1410016378000) <br><br>
+        Silahkan lakukan pembayaran ke rekening berikut. <br><br>
+        <strong>BNI</strong> : a/n Roze Windu Yuni Syarah (0605280435) <br><br>
 
         Lakukan konfirmasi pembayaran dengan membalas email ini. <br>
         Pembayaran dan konfirmasinya maksimal 1x24 jam. <br><br>

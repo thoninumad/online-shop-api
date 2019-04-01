@@ -12,6 +12,7 @@ use App\Order;
 use App\ProductOrder;
 use Mail;
 use App\Mail\PurchaseOrder;
+use App\Http\Resources\Order as OrderResource;
 use App\Http\Resources\Provinces as ProvinceResourceCollection;
 use App\Http\Resources\Cities as CityResourceCollection;
 
@@ -391,5 +392,42 @@ class ShopController extends Controller
             'message' => $message,
             'data' => $data
         ], 200);
+    }
+
+    public function invoice($invoice) {
+        $criteria = Order::where('invoice_number', $invoice)->first();
+        return new OrderResource($criteria);
+    }
+
+    public function confirmation(Request $request) {
+
+        $status = "error";
+        $message = "";
+        $data = null;
+        $code = 406;
+
+        $invoice_number =  $request->invoice_number;
+        $order = Order::where('invoice_number', $invoice_number)->first();
+
+        $order->status = 'PENDING';
+        if($request->file('payment_evidence')) {
+            $file = $request->file('payment_evidence')->store('payment-evidence', 'public');
+            $order->payment_evidence = $file;
+        }
+
+        if($order->save()) {
+            $status = "success";
+            $message = "Confirm order success";
+            $data = $order->toArray();
+            $code = 200;
+        } else {
+            $message = "Confirm order failed";
+        }
+
+        return response()->json([
+            'status' => $status,
+            'message' => $message,
+            'data' => $data
+        ], $code);
     }
 }
